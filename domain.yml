@@ -1,0 +1,121 @@
+version: "3.1"
+slots:
+  collaborator_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: person_name
+        conditions:
+          - active_loop: collaboration_form
+  
+  collaborator_phone:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: phone_number
+        conditions:
+          - active_loop: collaboration_form
+  
+  collaborator_email:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: email
+        conditions:
+          - active_loop: collaboration_form
+  handoff_to_human:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: person_name
+
+entities:
+  - person_name
+  - phone_number
+  - email
+
+intents:
+  - greet
+  - ask_about_aditya
+  - ask_skills
+  - ask_projects
+  - ask_experience
+  - ask_resume
+  - hire_request
+  - freelance_inquiry
+  - collaboration_request
+  - ask_contact
+  - goodbye
+  - nlu_fallback
+
+
+
+responses:
+
+  utter_greet:
+    - text: "Hi! I'm Aditya, a Full-Stack Developer. How can I help you today?"
+
+  utter_ask_about_aditya:
+    - text: "I'm Aditya, a Full-Stack Developer skilled in React, Next.js, Node.js, Go, and cloud technologies. I build scalable web apps and AI-powered solutions."
+
+  utter_ask_skills:
+    - text: "My main skills include React, TypeScript, Next.js, Node.js, Go, MongoDB, Docker, Kubernetes, and cloud deployment."
+
+  utter_ask_projects:
+    - text: "I've built SaaS platforms, AI tools, recruitment portals, delivery optimization systems, and full-stack web applications. Would you like details on any specific project?"
+
+  utter_ask_experience:
+    - text: "I have professional experience as a Software Developer and hands-on experience building production-ready full-stack applications."
+
+  utter_ask_resume:
+    - text: "You can download my resume here: [Add Resume Link]"
+
+  utter_hire_request:
+    - text: "That's great to hear! Please share your requirements, and we can discuss how I can help."
+
+  utter_freelance_inquiry:
+    - text: "Yes, I'm available for freelance projects. Tell me about your idea or timeline."
+
+  utter_collaboration_request:
+    - text: "I'd love to collaborate! Please share more details about the opportunity."
+
+  utter_ask_contact:
+    - text: "You can reach me via email at **aditya@krsingh0721@gmail.com** or through the contact form on this website."
+
+  utter_goodbye:
+    - text: "Thanks for visiting my portfolio. Have a great day!"
+
+  utter_ask_collaborator_name:
+    - text: "What is your full name?"
+  
+  utter_ask_collaborator_phone:
+    - text: "What is your phone number?"
+  
+  utter_ask_collaborator_email:
+    - text: "What is your email address?"
+
+  utter_handoff_to_human:
+    - text: "Let me connect you with a human agent. Please wait..."
+  
+  utter_collaboration_confirmed:
+    - text: "Thank you {collaborator_name}! I've recorded your details."
+forms:
+  collaboration_form:
+    required_slots:
+      - collaborator_name
+      - collaborator_phone
+      - collaborator_email
+actions:
+  - action_human_handoff
+  - action_resume_from_handoff

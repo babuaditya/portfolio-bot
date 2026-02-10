@@ -1,0 +1,17 @@
+version: "3.1"
+
+stories:
+
+- story: greet and ask skills
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_skills
+    - action: utter_ask_skills
+
+- story: hiring flow
+  steps:
+    - intent: hire_request
+    - action: utter_hire_request
+    - intent: ask_contact
+    - action: utter_ask_contact

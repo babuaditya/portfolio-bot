@@ -1,0 +1,103 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - good morning
+
+- intent: ask_about_aditya
+  examples: |
+    - who are you
+    - tell me about yourself
+    - introduce yourself
+    - who is Aditya
+
+- intent: ask_skills
+  examples: |
+    - what are your skills
+    - your tech stack
+    - which technologies do you use
+    - what languages do you know
+
+- intent: ask_projects
+  examples: |
+    - show your projects
+    - what have you built
+    - your portfolio work
+    - tell me about your projects
+
+- intent: ask_experience
+  examples: |
+    - how much experience do you have
+    - where have you worked
+    - your work history
+
+- intent: ask_resume
+  examples: |
+    - can I see your resume
+    - download CV
+    - share your resume
+
+- intent: hire_request
+  examples: |
+    - I want to hire you
+    - are you available for job
+    - we have an opening for you
+
+- intent: freelance_inquiry
+  examples: |
+    - do you do freelance work
+    - are you available for freelance
+    - can you build a project for me
+
+- intent: collaboration_request
+  examples: |
+    - I want to collaborate
+    - Let's work together
+    - I'd like to collaborate with you
+    - Can we collaborate?
+    - I'm interested in collaborating
+    - collaboration opportunity
+    - let's partner up
+  
+- intent: inform
+  examples: |
+    - [John Smith](person_name)
+    - [Sarah Johnson](person_name)
+    - [Michael Brown](person_name)
+    - My name is [David Lee](person_name)
+    - I'm [Emma Wilson](person_name)
+    - [555-1234](phone_number)
+    - [9876543210](phone_number)
+    - [+1-555-123-4567](phone_number)
+    - My phone is [123-456-7890](phone_number)
+    - [john@email.com](email)
+    - [sarah.j@example.com](email)
+    - [contact@company.org](email)
+    - My email is [test@domain.com](email)
+    - [John](person_name)
+    - [555-0000](phone_number)
+    - [user@test.com](email)
+
+
+- intent: ask_contact
+  examples: |
+    - how can I contact you
+    - your email or phone
+    - where to reach you
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+
+- intent: provide_name
+  examples: |
+    - My name is [John](person_name)
+    - I'm [Sarah Smith](person_name)
+    - [Michael Johnson](person_name)
+

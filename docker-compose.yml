@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  rasa:
+    build: .
+    container_name: rasa-server
+    ports:
+      - "5005:5005"
+    volumes:
+      - .:/app
+    depends_on:
+      - actions
+
+  actions:
+    image: rasa/rasa-sdk:3.6.2
+    container_name: rasa-actions
+    volumes:
+      - ./actions:/app/actions
+    ports:
+      - "5055:5055"

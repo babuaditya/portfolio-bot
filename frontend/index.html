@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rasa Bot Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #response {
+      margin-top: 20px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Rasa Chatbot Test</h2>
+
+  <input id="message" type="text" placeholder="Say something..." />
+  <button onclick="sendMessage()">Send</button>
+
+  <div id="response"></div>
+    <script type="module" src="https://unpkg.com/@rasahq/chat-widget-ui/dist/rasa-chatwidget/rasa-chatwidget.esm.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@rasahq/chat-widget-ui/dist/rasa-chatwidget/rasa-chatwidget.css" />
+  <script>
+    // Hook-like function
+    async function useRasaMessage(message) {
+      const res = await fetch("http://localhost:5005/webhooks/rest/webhook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          sender: "test-user",
+          message: message
+        })
+      });
+
+      return res.json();
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("message");
+      const responseDiv = document.getElementById("response");
+
+      responseDiv.innerHTML = "Loading...";
+
+      try {
+        const replies = await useRasaMessage(input.value);
+
+        if (replies.length === 0) {
+          responseDiv.innerHTML = "No response from bot ❌";
+        } else {
+          responseDiv.innerHTML = replies
+            .map(r => `<p>🤖 ${r.text}</p>`)
+            .join("");
+        }
+      } catch (err) {
+        responseDiv.innerHTML = "Error connecting to Rasa ❌";
+        console.error(err);
+      }
+    }
+  </script>
+<rasa-chatbot-widget server-url="http://localhost:5005"></rasa-chatbot-widget>
+</body>
+</html>

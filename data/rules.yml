@@ -1,0 +1,79 @@
+version: "3.1"
+
+rules:
+
+- rule: greet
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- rule: about aditya
+  steps:
+    - intent: ask_about_aditya
+    - action: utter_ask_about_aditya
+
+- rule: skills
+  steps:
+    - intent: ask_skills
+    - action: utter_ask_skills
+
+- rule: projects
+  steps:
+    - intent: ask_projects
+    - action: utter_ask_projects
+
+- rule: experience
+  steps:
+    - intent: ask_experience
+    - action: utter_ask_experience
+
+- rule: resume
+  steps:
+    - intent: ask_resume
+    - action: utter_ask_resume
+
+- rule: hire
+  steps:
+    - intent: hire_request
+    - action: utter_hire_request
+
+- rule: freelance
+  steps:
+    - intent: freelance_inquiry
+    - action: utter_freelance_inquiry
+
+- rule: contact
+  steps:
+    - intent: ask_contact
+    - action: utter_ask_contact
+  
+- rule: Activate collaboration form
+  steps:
+  - intent: collaboration_request
+  - action: utter_collaboration_request
+  - action: collaboration_form
+  - active_loop: collaboration_form
+
+- rule: Submit collaboration form
+  condition:
+  - active_loop: collaboration_form
+  steps:
+  - action: collaboration_form
+  - active_loop: null
+  - action: utter_collaboration_confirmed
+
+- rule: Handoff to human on fallback
+  steps:
+  - intent: nlu_fallback
+  - action: utter_handoff_to_human
+  - action: action_human_handoff
+
+- rule: Resume after handoff
+  condition:
+  - slot_was_set:
+    - handoff_to_human: true
