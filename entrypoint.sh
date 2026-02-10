@@ -2,9 +2,9 @@
 set -e
 
 # echo "📦 Training Rasa model..."
-rasa train
+# rasa train
 
-rasa run actions
+# rasa run actions
 
 echo "🚀 Starting Rasa server..."
-# rasa run --enable-api --cors "*"  --debug
+rasa run --enable-api --cors "*"  --debug

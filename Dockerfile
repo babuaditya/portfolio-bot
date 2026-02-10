@@ -1,15 +1,10 @@
-FROM rasa/rasa-sdk:3.6.2
+FROM rasa/rasa:3.6.20
 
 WORKDIR /app
-
-COPY requirements.txt /app/requirements.txt
+COPY . /app
 
 USER root
-RUN /opt/venv/bin/pip install --no-cache-dir -r /app/requirements.txt
-
-COPY . /app
 RUN chmod +x /app/entrypoint.sh
-
 USER 1001
 
 ENTRYPOINT ["/app/entrypoint.sh"]

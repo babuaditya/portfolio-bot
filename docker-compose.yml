@@ -12,7 +12,7 @@ services:
       - actions
 
   actions:
-    image: rasa/rasa-sdk:3.6.2
+    build: ./actions
     container_name: rasa-actions
     volumes:
       - ./actions:/app/actions
