@@ -1,18 +1,18 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
-from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.executor import CollectingDispatcher, ActionExecutor
 from rasa_sdk.events import SlotSet
 
 # Import modular actions
 from .human_handoff import ActionHumanHandoff, ActionResumeFromHandoff
 from .config import Config
 
-
+print("Loading custom actions...")
 class ActionGreetUser(Action):
     """Example action for greeting"""
     
     def name(self) -> Text:
-        return "action_greet_user"
+        return "action_human_handoff"
     
     def run(
         self,
