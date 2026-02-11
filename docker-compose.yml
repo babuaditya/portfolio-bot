@@ -10,11 +10,12 @@ services:
       - .:/app
     depends_on:
       - actions
+      
 
   actions:
     build: ./actions
     container_name: rasa-actions
     volumes:
-      - ./actions:/app/actions
+      - ./actions:/app
     ports:
       - "5055:5055"

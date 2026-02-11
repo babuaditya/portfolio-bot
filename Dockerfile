@@ -3,8 +3,10 @@ FROM rasa/rasa:3.6.20
 WORKDIR /app
 COPY . /app
 
-USER root
-RUN chmod +x /app/entrypoint.sh
-USER 1001
+EXPOSE 5005
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+# IMPORTANT: clear base image ENTRYPOINT
+ENTRYPOINT []
+
+# Correct Rasa start command
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--debug"]

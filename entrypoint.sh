@@ -2,7 +2,7 @@
 set -e
 
 # echo "📦 Training Rasa model..."
-# rasa train
+rasa train
 
 # rasa run actions
 
