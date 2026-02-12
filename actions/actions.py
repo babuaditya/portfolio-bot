@@ -12,7 +12,7 @@ class ActionGreetUser(Action):
     """Example action for greeting"""
     
     def name(self) -> Text:
-        return "action_human_handoff"
+        return "action_greet_user"
     
     def run(
         self,

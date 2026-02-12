@@ -1,8 +1,8 @@
 from typing import Text, Dict, Any
 import requests
 from .config import Config
-
-
+import logger
+logger = logging.getLogger(__name__)
 class SlackNotifier:
     """Handles all Slack notifications"""
     
@@ -26,7 +26,7 @@ class SlackNotifier:
             bool: True if notification sent successfully
         """
         slack_message = self._build_handoff_message(sender_id, user_message)
-        
+        logger.info(sender_id,user_message)
         try:
             response = requests.post(
                 self.webhook_url,
@@ -37,6 +37,7 @@ class SlackNotifier:
             return response.status_code == 200
             
         except requests.exceptions.RequestException as e:
+            logger.error(e)
             print(f"Error sending to Slack: {e}")
             return False
     

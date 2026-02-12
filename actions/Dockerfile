@@ -2,16 +2,13 @@ FROM rasa/rasa-sdk:3.6.2
 
 WORKDIR /app
 
-
-# Install dependencies as root
 USER root
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY . .
 
-# Copy action code
-COPY . /app
+USER 1001
 
 EXPOSE 5055
-
 CMD ["start", "--port", "5055", "--cors", "*", "--debug"]

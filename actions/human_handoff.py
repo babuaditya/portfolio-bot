@@ -27,7 +27,7 @@ class ActionHumanHandoff(Action):
         # Extract conversation details
         user_message = tracker.latest_message.get('text', 'No message')
         sender_id = tracker.sender_id
-        
+        print(sender_id)
         # Log handoff attempt
         self._log_handoff(sender_id, user_message)
         
